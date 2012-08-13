@@ -1,0 +1,9 @@
+# A human-readable UTF-8 machine identifier string. This should contain a name like
+# "Wulf's Notebook" which should be similar to the hostname (e. g. "wulfs-notebook")
+# but may differ if you prefer because it's used for presentation only (e. g. in GDM/KDM).
+PRETTY_HOSTNAME="Lou"
+# An icon identifying this machine according to the XDG Icon Naming Specification.
+# http://standards.freedesktop.org/icon-naming-spec/icon-naming-spec-latest.html
+# The default value "computer" is the most basic fallback, you could use e. g.
+# "computer-laptop" or "computer-desktop".
+ICON_NAME=computer
