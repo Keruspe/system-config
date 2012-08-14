@@ -1,0 +1,51 @@
+[user]
+    name = Marc-Antoine Perennou
+    email = Marc-Antoine@Perennou.com
+[alias]
+    ci = commit -asm
+    co = commit -sm
+    sw = checkout
+    br = checkout -b
+    st = status -s
+    amend = commit -s --amend -C HEAD
+    ca = commit -s --amend
+    pa = patch -M -C -C
+    rc = rebase --continue
+    edit = !vim
+    pe = format-patch -M -C --find-copies-harder --stdout
+[color]
+    ui = auto
+[diff]
+    renames = copy
+[core]
+    excludesfile = /home/keruspe/.gitignore
+    editor = vim
+[url "git://git.gnome.org/"]
+    insteadOf = gnome:
+[url "git+ssh://marcop@git.gnome.org/git/"]
+    pushInsteadOf = gnome:
+[url "git://git.imagination-land.com/"]
+    insteadOf = home:
+[url "git+ssh://git@git.imagination-land.com/"]
+    pushInsteadOf = home:
+[url "git+ssh://gitolite@git.clever-cloud.com/"]
+    insteadOf = clever:
+[url "git://github.com/"]
+    insteadOf = github:
+[url "git+ssh://git@github.com/"]
+    pushInsteadOf = github:
+[url "git://git.overlays.gentoo.org/"]
+    insteadOf = gentoo:
+[url "git+ssh://git@git.overlays.gentoo.org/"]
+    pushInsteadOf = gentoo:
+[merge]
+    renamelimit = 4096
+    ff = false
+    summary = true
+[sendemail]
+    smtpencryption = tls
+    smtpserver = smtp.gmail.com
+    smtpuser = keruspe
+    smtpserverport = 587
+    suppresscc = self
+
