@@ -8,8 +8,9 @@
 #
 
 # IPv4 and IPv6 localhost aliases
-127.0.0.1 Lou.local Lou localhost
-::1 Lou.local Lou localhost
+127.0.0.1	Lou.local Lou localhost
+::1		Lou.local Lou localhost
+
 #
 # Imaginary network.
 #10.0.0.2               myname
