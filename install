@@ -1,7 +1,19 @@
 #!/bin/bash
+
+install_cmd() {
+    case $1 in
+        "system")
+            echo "cp -a"
+            ;;
+        *)
+            echo "ln -s"
+            ;;
+    esac
+}
+
 for i in $(find $1 -type f); do
 	dest="$2/${i/$1}"
 	mkdir -p $(dirname "${dest}")
 	rm -f ${dest}
-	ln -s "$(pwd)/$i" ${dest}
+        $(install_cmd $1) "$(pwd)/$i" ${dest}
 done
