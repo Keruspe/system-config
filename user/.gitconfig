@@ -38,6 +38,8 @@
     insteadOf = gentoo:
 [url "git+ssh://git@git.overlays.gentoo.org/"]
     pushInsteadOf = gentoo:
+[url "git://git.exherbo.org/"]
+    insteadOf = exherbo:
 [merge]
     renamelimit = 4096
     ff = false
