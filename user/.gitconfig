@@ -50,4 +50,7 @@
     smtpuser = keruspe
     smtpserverport = 587
     suppresscc = self
+    chainreplyto = true
 
+[push]
+    default = simple
