@@ -1,0 +1,14 @@
+[Unit]
+Description=GNOME Settings Daemon
+IgnoreOnIsolate=true
+Before=gnome-session.service
+
+[Service]
+Environment=DESKTOP_SESSION=gnome
+BusName=org.gnome.SettingsDaemon
+ExecStart=/usr/libexec/gnome-settings-daemon
+Restart=always
+
+[Install]
+WantedBy=default.target
+Alias=dbus-org.gnome.SettingsDaemon.service

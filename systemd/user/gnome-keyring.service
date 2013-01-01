@@ -1,0 +1,11 @@
+[Unit]
+Description=GNOME Keyring Daemon
+IgnoreOnIsolate=true
+
+[Service]
+Type=oneshot
+ExecStart=/bin/sh -c 'test "$GNOME_KEYRING_CONTROL" && systemctl --user set-environment $(gnome-keyring-daemon --start)'
+RemainAfterExit=true
+
+[Install]
+WantedBy=default.target

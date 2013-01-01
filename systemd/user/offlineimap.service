@@ -1,0 +1,10 @@
+[Unit]
+Description=OfflineIMAP Service
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/offlineimap -o
+
+[Install]
+WantedBy=default.target

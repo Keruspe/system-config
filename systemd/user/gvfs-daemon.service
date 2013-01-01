@@ -1,0 +1,9 @@
+[Unit]
+Description=GNOME Gvfs Daemon
+
+[Service]
+BusName=org.gtk.vfs.Daemon
+ExecStart=/usr/lib/gvfs/gvfsd
+
+[Install]
+Alias=dbus-org.gtk.vfs.Daemon.service

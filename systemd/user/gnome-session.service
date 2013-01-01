@@ -1,0 +1,12 @@
+[Unit]
+Description=The GNOME session manager
+Requires=dbus.socket
+
+[Service]
+Environment=DESKTOP_SESSION=gnome
+BusName=org.gnome.SessionManager
+ExecStart=/usr/bin/gnome-session --session=gnome-dummy -a /dev/null
+
+[Install]
+WantedBy=default.target
+Alias=dbus-org.gnome.SessionManager.service
