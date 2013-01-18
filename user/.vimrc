@@ -39,14 +39,14 @@ if has("eval")
             put ='# Distributed under the terms of the GNU General Public License v2'
             $
         endfun
-        fun! <SID>UpdateCopyrightHeaders()
+        fun! UpdateCopyrightHeaders()
             let l:a = 0
             for l:x in getline(1, 10)
                 let l:a = l:a + 1
-                if -1 != match(l:x, 'Copyright \((c) \)\?[- 0-9,]*20\(0[456789]\|1[01]\) Marc-Antoine Perennou')
+                if -1 != match(l:x, 'Copyright \((c) \)\?[- 0-9,]*20\(0[456789]\|1[012]\) Marc-Antoine Perennou')
                     if input("Update copyright header? (y/N) ") == "y"
-                        call setline(l:a, substitute(l:x, '\(20\(0[456789]\|1[01]\)\) Marc-Antoine',
-                                    \ '\1, 2012 Marc-Antoine', ""))
+                        call setline(l:a, substitute(l:x, '\(20\(0[456789]\|1[012]\)\) Marc-Antoine',
+                                    \ '\1, 2013 Marc-Antoine', ""))
                     endif
                 endif
             endfor
@@ -56,9 +56,7 @@ if has("eval")
             autocmd BufReadPost **.git/COMMIT_EDITMSG exe "normal gg"
             autocmd BufNewFile,BufRead /etc/dbus-1/**/*.conf setl ft=xml
             autocmd BufNewFile *.exheres-* call MakeGenericCopyrightHeader()
-            autocmd BufNewFile *.[hc] call MakeGenericCopyrightHeader()
-            autocmd BufNewFile *.vala call MakeGenericCopyrightHeader()
-            autocmd BufWritePre * call <SID>UpdateCopyrightHeaders()
+            autocmd BufWritePre * call UpdateCopyrightHeaders()
             autocmd BufNewFile,BufRead /{etc,lib*}/systemd/**.{conf,target,service,socket,mount,automount,swap,path,timer,snapshot,device} setl ft=desktop
             autocmd BufNewFile,BufRead **/.claws-mail/tmp/tmpmsg.* setl ft=mail
         augroup END
