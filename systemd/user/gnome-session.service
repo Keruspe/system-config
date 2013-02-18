@@ -8,5 +8,5 @@ BusName=org.gnome.SessionManager
 ExecStart=/usr/bin/gnome-session --session=gnome-dummy -a /dev/null
 
 [Install]
-WantedBy=default.target
+WantedBy=gnome.target
 Alias=dbus-org.gnome.SessionManager.service

@@ -10,5 +10,5 @@ ExecStart=/usr/libexec/gnome-settings-daemon
 Restart=always
 
 [Install]
-WantedBy=default.target
+WantedBy=gnome.target
 Alias=dbus-org.gnome.SettingsDaemon.service

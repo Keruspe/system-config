@@ -8,4 +8,4 @@ ExecStart=/bin/sh -c 'test "$GNOME_KEYRING_CONTROL" && systemctl --user set-envi
 RemainAfterExit=true
 
 [Install]
-WantedBy=default.target
+WantedBy=gnome.target
