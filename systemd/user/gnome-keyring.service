@@ -1,11 +1,15 @@
 [Unit]
-Description=GNOME Keyring Daemon
-IgnoreOnIsolate=true
+Description=GNOME keyring daemon
+Before=default.target
 
 [Service]
-Type=oneshot
-ExecStart=/bin/sh -c 'test "$GNOME_KEYRING_CONTROL" && systemctl --user set-environment $(gnome-keyring-daemon --start)'
-RemainAfterExit=true
+Environment=SSH_AUTH_SOCK=%t/gnome-keyring/ssh GPG_AGENT_INFO=%t/gnome-keyring/gpg
+ExecStart=/usr/bin/gnome-keyring-daemon --foreground --control-directory %t/gnome-keyring
+ExecStartPost=/usr/bin/systemctl --user set-environment SSH_AUTH_SOCK=${SSH_AUTH_SOCK}
+ExecStartPost=/usr/bin/systemctl --user set-environment GPG_AGENT_INFO=${GPG_AGENT_INFO}
 
 [Install]
-WantedBy=gnome.target
+WantedBy=default.target
+Alias=dbus-org.gnome.keyring.service
+Alias=dbus-org.freedesktop.secrets.service
+
