@@ -9,7 +9,7 @@ ExecStartPost=/usr/bin/systemctl --user set-environment SSH_AUTH_SOCK=${SSH_AUTH
 ExecStartPost=/usr/bin/systemctl --user set-environment GPG_AGENT_INFO=${GPG_AGENT_INFO}
 
 [Install]
-WantedBy=default.target
+WantedBy=session.target
 Alias=dbus-org.gnome.keyring.service
 Alias=dbus-org.freedesktop.secrets.service
 
