@@ -1,0 +1,14 @@
+[Unit]
+Description=xim-uim
+After=dbus.socket
+Requires=dbus.socket
+
+[Service]
+ExecStartPre=/usr/bin/systemctl --user set-environment GTK_IM_MODULE=uim
+ExecStartPre=/usr/bin/systemctl --user set-environment QT_IM_MODULE=uim
+ExecStart=/usr/bin/uim-xim
+ExecStartPost=/usr/bin/systemctl --user set-environment XMODIFIERS=@im=uim
+
+[Install]
+WantedBy=default.target
+

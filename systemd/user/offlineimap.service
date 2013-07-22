@@ -1,6 +1,6 @@
 [Unit]
 Description=OfflineIMAP Service
-After=network.target
+Requisite=network.target
 
 [Service]
 Type=simple

@@ -1,0 +1,10 @@
+[Unit]
+Description=uim-toolbar
+After=uim-xim.service
+Requires=uim-xim.service
+
+[Service]
+ExecStart=/usr/bin/uim-toolbar-gtk3
+
+[Install]
+WantedBy=default.target

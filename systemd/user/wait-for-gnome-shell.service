@@ -1,0 +1,11 @@
+[Unit]
+Description=Dummy
+Before=default.target
+RequiredBy=default.target
+
+[Service]
+Type=oneshot
+ExecStart=/opt/wait-for-gnome-shell
+
+[Install]
+WantedBy=default.target

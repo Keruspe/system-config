@@ -1,7 +1,6 @@
 [Unit]
 Description=GNOME Settings Daemon
 IgnoreOnIsolate=true
-Before=gnome-session.service
 
 [Service]
 Environment=DESKTOP_SESSION=gnome

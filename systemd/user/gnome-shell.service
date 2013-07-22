@@ -1,7 +1,7 @@
 [Unit]
 Description=GNOME Shell
-After=gnome-keyring.service gnome-settings-daemon.service gnome-session.service
-Requires=gnome-keyring.service
+After=gnome-keyring.service gnome-session.service gnome-settings-daemon.service ibus.service
+Requires=gnome-keyring.service gnome-session.service
 
 [Service]
 BusName=org.gnome.Shell
