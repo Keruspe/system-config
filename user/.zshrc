@@ -67,7 +67,6 @@ alias lo='ls -ogh'
 alias ll='ls -lh'
 alias ssh='autossh -M 0'
 alias grep='grep --colour=auto'
-alias systemctl='systemctl --user'
 sudo() {
     su - -c "$@"
 }

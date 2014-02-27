@@ -42,6 +42,8 @@
     pushInsteadOf = exherbo:
 [url "git://git.exherbo.org/"]
     insteadOf = exherbo:
+[url "git+ssh://Keruspe@galileo.mailstation.de:29418/"]
+    insteadOf = exh-gerrit:
 [merge]
     renamelimit = 4096
     ff = false
@@ -56,3 +58,5 @@
 
 [push]
     default = simple
+[gitreview]
+	username = Keruspe
