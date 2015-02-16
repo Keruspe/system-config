@@ -28,7 +28,7 @@
     insteadOf = home:
 [url "git+ssh://git@git.imagination-land.com/"]
     pushInsteadOf = home:
-[url "git+ssh://gitolite@git.clever-cloud.com/"]
+[url "git+ssh://git@gitlab.clever-cloud.com/clever-cloud/"]
     insteadOf = clever:
 [url "git://github.com/"]
     insteadOf = github:
