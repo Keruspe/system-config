@@ -1,67 +1,71 @@
-# /etc/zsh/zprofile
-# $Header: /var/cvsroot/gentoo-x86/app-shells/zsh/files/zprofile,v 1.5 2008/05/23 12:02:51 tove Exp $
+# Load interresting modules
+autoload -Uz compinit colors vcs_info
 
-zstyle ':completion:*' completer _expand _complete _ignored _correct _approximate
-zstyle ':completion:*' completions 1
-zstyle ':completion:*' glob 1
-zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
-zstyle ':completion:*' max-errors 1
-zstyle ':completion:*' menu select=long
-zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
-zstyle ':completion:*' substitute 1
-autoload -Uz compinit colors
-compinit
-colors
+# Setup env
+. /etc/profile.env
+
+setopt nullglob
+for sh in /etc/profile.d/*.sh ; do
+    [ -r "$sh" ] && . "$sh"
+done
+unset sh
+unsetopt nullglob
+
+# Basic settings
 HISTFILE=~/.histfile
-HISTSIZE=2048
-SAVEHIST=2048
-setopt appendhistory autocd extendedglob notify nonomatch PROMPT_SUBST
-unsetopt beep
-bindkey -v
-
-# Load environment settings from profile.env, which is created by
-# env-update from the files in /etc/env.d
-if [ -e /etc/profile.env ] ; then
-	. /etc/profile.env
-fi
-
-# You should override these in your ~/.zprofile (or equivalent) for per-user
-# settings.  For system defaults, you can add a new file in /etc/profile.d/.
-export EDITOR=${EDITOR:-/usr/bin/vim}
-export PAGER=${PAGER:-/usr/bin/less}
-
-# 077 would be more secure, but 022 is generally quite realistic
+HISTSIZE=8192
+SAVEHIST=8192
+export EDITOR=/usr/bin/vim
+export PAGER=/usr/bin/less
+export PATH="/usr/sbin:/sbin:/usr/bin:/bin:${PATH}"
 umask 022
 
-# Set up PATH depending on whether we're root or a normal user.
-# There's no real reason to exclude sbin paths from the normal user,
-# but it can make tab-completion easier when they aren't in the
-# user's PATH to pollute the executable namespace.
-#
-# It is intentional in the following line to use || instead of -o.
-# This way the evaluation can be short-circuited and calling whoami is
-# avoided.
+# Completions
 
-autoload -Uz vcs_info
+## format all messages not formatted in bold prefixed with ----
+zstyle ':completion:*' format '%B---- %d%b'
+## format descriptions (notice the vt100 escapes)
+zstyle ':completion:*:descriptions'    format $'%{\e[0;31m%}completing %B%d%b%{\e[0m%}'
+## bold and underline normal messages
+zstyle ':completion:*:messages' format '%B%U---- %d%u%b'
+## format in bold red error messages
+zstyle ':completion:*:warnings' format "%B$fg[red]%}---- no match for: $fg[white]%d%b"
+## let's use the tag name as group name
+zstyle ':completion:*' group-name ''
+## activate menu selection
+zstyle ':completion:*' menu select=long
+## activate approximate completion, but only after regular completion (_complete), prefer expansion
+zstyle ':completion:::::' completer _expand _complete _ignored _history _correct _approximate
+## limit to 2 errors
+zstyle ':completion:*:approximate:*' max-errors 2
+## Better handling of long output
+zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more %s
 
+# Enable a few things
+compinit
+colors
+
+setopt autocd appendhistory extendedglob nonomatch promptsubst notify
+
+# vim mode
+bindkey -v
+
+# Ctrl-R to search history
+bindkey '^R' history-incremental-search-backward
+
+# VCS info
 zstyle ':vcs_info:*' actionformats '%F{5}(%f%s%F{5})%F{3}-%F{5}[%F{2}%b%F{3}|%F{1}%a%F{5}]%f '
 zstyle ':vcs_info:*' formats '%F{5}(%f%s%F{5})%F{3}-%F{5}[%F{2}%b%F{5}]%f '
 zstyle ':vcs_info:(sv[nk]|bzr):*' branchformat '%b%F{1}:%F{3}%r'
 zstyle ':vcs_info:*' enable git hg bzr svn
 
-PROMPT='%M %{${fg[blue]}%}%~ ${vcs_info_msg_0_}%# %{${reset_color}%}'
+## Reload vcs_info stuff on precmd
+precmd(){
+    vcs_info
+    [[ $(tty) = /dev/pts/* ]] && print -Pn "\e]0;%n@%M:%~\a"
+}
 
-if [ "$EUID" = "0" ] || [ "$USER" = "root" ] ; then
-	PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:${ROOTPATH}"
-	PROMPT="%{${fg_bold[red]}%}${PROMPT}"
-else
-	PATH="/usr/local/bin:/usr/bin:/bin:${PATH}"
-	PROMPT="%{${fg_bold[green]}%}%n@${PROMPT}"
-fi
-export PATH
-unset ROOTPATH
-
+# Aliases
 alias ls='ls --color=auto'
 alias lo='ls -ogh'
 alias ll='ls -lh'
@@ -71,19 +75,16 @@ sudo() {
     su - -c "$@"
 }
 
-precmd(){
-    vcs_info
-    [[ $(tty) = /dev/pts/* ]] && print -Pn "\e]0;%n@%M:%~\a"
-}
+# No beep ever
+unsetopt beep
 
-shopts=$-
-setopt nullglob
-for sh in /etc/profile.d/*.sh ; do
-	[ -r "$sh" ] && . "$sh"
-done
-unsetopt nullglob
-set -$shopts
-unset sh shopts
-
+# Prompts
+PROMPT='%M %{${fg[blue]}%}%~ ${vcs_info_msg_0_}%# %{${reset_color}%}'
 RPROMPT="%{${fg[blue]}%}[%{${fg[red]}%}%?%{${fg[blue]}%}][%{${fg[red]}%}%*%{${fg[blue]}%} - %{${fg[red]}%}%D{%d/%m/%Y}%{${fg[blue]}%}]%{${reset_color}%}"
+
+if [ "$EUID" = "0" ] || [ "$USER" = "root" ] ; then
+    PROMPT="%{${fg_bold[red]}%}${PROMPT}"
+else
+    PROMPT="%{${fg_bold[green]}%}%n@${PROMPT}"
+fi
 
