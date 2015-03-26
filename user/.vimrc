@@ -21,10 +21,16 @@ let g:full_identity = 'Marc-Antoine Perennou <Marc-Antoine@Perennou.com>'
 let g:exheres_author_name = 'Marc-Antoine Perennou <keruspe@exherbo.org>'
 let g:netrw_http_cmd = "curl -o"
 
-filetype on
-filetype plugin on
-filetype indent on
+filetype off
 
 au FileType javascript setl sw=2 sts=2
 
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+Plugin 'gmarik/Vundle.vim'
+
+call vundle#end()
+
+filetype plugin indent on
 syntax on
