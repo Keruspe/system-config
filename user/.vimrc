@@ -1,15 +1,4 @@
-" Begin vundle conf
-set nocompatible
-filetype off
-let g:vundle_default_git_proto='git'
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-Plugin 'gmarik/Vundle.vim'
-Plugin 'bling/vim-airline'
-Plugin 'vim-scripts/gnupg.vim'
-call vundle#end()
-filetype plugin indent on
-" End vundle conf
+source ~/.vim/vundle.vim
 
 set background=dark
 set backspace=indent,eol,start
