@@ -1,6 +1,5 @@
 set nocompatible
 filetype off
-let g:vundle_default_git_proto='git'
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
@@ -10,6 +9,9 @@ Plugin 'vim-scripts/Command-T'
 Plugin 'vim-scripts/gnupg.vim'
 call vundle#end()
 filetype plugin indent on
+
+" vundle
+let g:vundle_default_git_proto='git'
 
 " vim-airline
 let g:airline#extensions#tabline#enabled = 1
