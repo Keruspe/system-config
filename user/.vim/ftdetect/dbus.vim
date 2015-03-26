@@ -1,1 +1,1 @@
-autocmd BufNewFile,BufRead /etc/dbus-1/**/*.conf setl ft=xml
+au BufNewFile,BufRead /etc/dbus-1/**/*.conf setl ft=xml

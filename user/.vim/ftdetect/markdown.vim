@@ -1,1 +1,1 @@
-autocmd BufNewFile,BufRead *.md set ft=markdown
+au BufNewFile,BufRead *.md set ft=markdown
