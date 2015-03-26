@@ -14,3 +14,7 @@ filetype plugin indent on
 " vim-airline
 let g:airline#extensions#tabline#enabled = 1
 set laststatus=2
+
+" Command-T
+noremap <leader>e :CommandTFlush<cr>\|:CommandT<cr>
+noremap <leader>r :CommandTFlush<cr>\|:CommandTBuffer<cr>
