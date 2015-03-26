@@ -27,11 +27,4 @@ filetype indent on
 
 au FileType javascript setl sw=2 sts=2
 
-augroup keruspe
-    autocmd!
-    autocmd BufReadPost **.git/COMMIT_EDITMSG exe "normal gg"
-    autocmd BufNewFile,BufRead /etc/dbus-1/**/*.conf setl ft=xml
-    autocmd BufNewFile,BufRead /{etc,lib*}/systemd/**.{conf,target,service,socket,mount,automount,swap,path,timer,snapshot,device} setl ft=desktop
-augroup END
-
 syntax on
