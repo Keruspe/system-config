@@ -23,7 +23,7 @@ let g:netrw_http_cmd = "curl -o"
 
 filetype off
 
-set rtp+=~/.vim/bundle/Vundle.vim
+set rtp+=~/.vim/bundle/vundle
 call vundle#begin()
 
 Plugin 'gmarik/Vundle.vim'
