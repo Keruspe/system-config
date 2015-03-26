@@ -23,8 +23,6 @@ let g:netrw_http_cmd = "curl -o"
 
 filetype off
 
-au FileType javascript setl sw=2 sts=2
-
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
