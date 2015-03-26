@@ -1,10 +1,20 @@
+" Begin vundle conf
+set nocompatible
+filetype off
+let g:vundle_default_git_proto='git'
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'gmarik/Vundle.vim'
+call vundle#end()
+filetype plugin indent on
+" End vundle conf
+
 set background=dark
 set backspace=indent,eol,start
 set et sts=4 sw=4
 set history=500
 set hlsearch
 set incsearch
-set nocompatible
 set nomodeline
 set ruler
 set showcmd
@@ -21,14 +31,4 @@ let g:full_identity = 'Marc-Antoine Perennou <Marc-Antoine@Perennou.com>'
 let g:exheres_author_name = 'Marc-Antoine Perennou <keruspe@exherbo.org>'
 let g:netrw_http_cmd = "curl -o"
 
-filetype off
-
-set rtp+=~/.vim/bundle/vundle
-call vundle#begin()
-
-Plugin 'gmarik/Vundle.vim'
-
-call vundle#end()
-
-filetype plugin indent on
 syntax on
