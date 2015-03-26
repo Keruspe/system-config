@@ -5,6 +5,7 @@ let g:vundle_default_git_proto='git'
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
+Plugin 'bling/vim-airline'
 call vundle#end()
 filetype plugin indent on
 " End vundle conf
@@ -12,6 +13,7 @@ filetype plugin indent on
 set background=dark
 set backspace=indent,eol,start
 set et sts=4 sw=4
+set hidden
 set history=500
 set hlsearch
 set incsearch
