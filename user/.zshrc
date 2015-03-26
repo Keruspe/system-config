@@ -35,7 +35,7 @@ zstyle ':completion:*' group-name ''
 ## activate menu selection
 zstyle ':completion:*' menu select=long
 ## activate approximate completion, but only after regular completion (_complete), prefer expansion
-zstyle ':completion:::::' completer _expand _complete _ignored _history _correct _approximate
+zstyle ':completion:::::' completer _expand _complete _ignored _correct _approximate
 ## limit to 2 errors
 zstyle ':completion:*:approximate:*' max-errors 2
 ## Better handling of long output

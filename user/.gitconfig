@@ -2,9 +2,7 @@
     name = Marc-Antoine Perennou
     email = Marc-Antoine@Perennou.com
 [alias]
-    ci = commit -asm
     co = commit -sm
-    sw = checkout
     br = checkout -b
     st = status -s
     amend = commit -s --amend -C HEAD
@@ -13,6 +11,7 @@
     rc = rebase --continue
     edit = !vim
     pe = format-patch -M -C --find-copies-harder --stdout
+    pr = pull --rebase --stat
 [color]
     ui = auto
 [diff]
