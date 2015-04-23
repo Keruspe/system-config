@@ -17,7 +17,7 @@ HISTSIZE=8192
 SAVEHIST=8192
 export EDITOR=/usr/bin/vim
 export PAGER=/usr/bin/less
-export PATH="/usr/sbin:/sbin:/usr/bin:/bin:${PATH}"
+export PATH=~/bin:/usr/local/bin:/usr/host/bin:${PATH}
 umask 022
 
 # Completions
