@@ -1,4 +1,0 @@
-[Desktop Entry]
-Name=Systemd
-Exec=/usr/lib64/systemd/systemd --user
-Type=XSession
