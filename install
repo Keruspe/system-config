@@ -6,14 +6,15 @@ install_cmd() {
             echo "cp -a"
             ;;
         *)
-            echo "ln -s"
+            echo "ln -snTf"
             ;;
     esac
 }
 
-for i in $(find $1 -type f); do
-	dest="$2/${i/$1}"
-	mkdir -p $(dirname "${dest}")
-	rm -f ${dest}
-        $(install_cmd $1) "$(pwd)/$i" ${dest}
+for i in "${1}"/* "${1}"/.*; do
+	bn="$(basename "${i}")"
+	[[ "${bn}" == "." || "${bn}" == ".." || "${bn}" == "*" ]] && continue
+	dest="${2}/${bn}"
+	mkdir -p "$(dirname "${dest}")"
+	$(install_cmd "${1}") "$(pwd)/${i}" "${dest}"
 done
