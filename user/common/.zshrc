@@ -88,3 +88,9 @@ else
     PROMPT="%{${fg_bold[green]}%}%n@${PROMPT}"
 fi
 
+export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}"/keyring/ssh
+
+r() { cave sync -s local $1 && shift && cave resolve -x1z $@ }
+
+delete_repo() { rm -rf /etc/paludis/repositories/"${1}".conf /var/db/paludis/repositories/"${1}"/ /var/cache/paludis/names/"${1}"/ /var/cache/paludis/metadata/"${1}"/ }
+
