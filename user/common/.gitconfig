@@ -16,6 +16,7 @@
     ui = auto
 [diff]
     renames = copy
+    renameLimit = 16536
 [core]
     excludesfile = /home/keruspe/.gitignore
     editor = vim
@@ -33,9 +34,9 @@
     insteadOf = github:
 [url "git+ssh://git@github.com/"]
     pushInsteadOf = github:
-[url "git://git.overlays.gentoo.org/"]
+[url "git://anongit.gentoo.org/"]
     insteadOf = gentoo:
-[url "git+ssh://git@git.overlays.gentoo.org/"]
+[url "git+ssh://git@git.gentoo.org/"]
     pushInsteadOf = gentoo:
 [url "git+ssh://git@git.exherbo.org/"]
     pushInsteadOf = exherbo:
@@ -58,4 +59,4 @@
 [push]
     default = simple
 [gitreview]
-	username = Keruspe
+    username = Keruspe
