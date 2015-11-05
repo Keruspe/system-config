@@ -41,6 +41,9 @@ zstyle ':completion:*:approximate:*' max-errors 2
 ## Better handling of long output
 zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more %s
 
+# Drop completions cache
+rm -f ~/.zcompdump
+
 # Enable a few things
 compinit
 colors
@@ -74,6 +77,22 @@ alias grep='grep --colour=auto'
 sudo() {
     su - -c "$@"
 }
+r() {
+    cave sync -s local $1 && shift && cave resolve -x1z $@
+}
+delete_repo() {
+    rm -rf /etc/paludis/repositories/"${1}".conf /var/db/paludis/repositories/"${1}"/ /var/cache/paludis/names/"${1}"/ /var/cache/paludis/metadata/"${1}"/
+}
+clever() {
+    local last
+    if [[ -z "${NVM_DIR}" ]]; then
+        . ~/.nvm/nvm.sh
+        last="$(nvm_remote_versions | grep -v iojs | tail -1)"
+        nvm install "${last}" &>/dev/null
+        command clever &>/dev/null || npm install -g clever-tools
+    fi
+    command clever "${@}"
+}
 
 # No beep ever
 unsetopt beep
@@ -89,8 +108,3 @@ else
 fi
 
 export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}"/keyring/ssh
-
-r() { cave sync -s local $1 && shift && cave resolve -x1z $@ }
-
-delete_repo() { rm -rf /etc/paludis/repositories/"${1}".conf /var/db/paludis/repositories/"${1}"/ /var/cache/paludis/names/"${1}"/ /var/cache/paludis/metadata/"${1}"/ }
-
