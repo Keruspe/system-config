@@ -83,7 +83,7 @@ r() {
 delete_repo() {
     rm -rf /etc/paludis/repositories/"${1}".conf /var/db/paludis/repositories/"${1}"/ /var/cache/paludis/names/"${1}"/ /var/cache/paludis/metadata/"${1}"/
 }
-clever() {
+init_node() {
     local last
     if [[ -z "${NVM_DIR}" ]]; then
         . ~/.nvm/nvm.sh
@@ -91,6 +91,9 @@ clever() {
         nvm install "${last}" &>/dev/null
         command clever &>/dev/null || npm install -g clever-tools
     fi
+}
+clever() {
+    init_node
     command clever "${@}"
 }
 
@@ -106,5 +109,3 @@ if [ "$EUID" = "0" ] || [ "$USER" = "root" ] ; then
 else
     PROMPT="%{${fg_bold[green]}%}%n@${PROMPT}"
 fi
-
-export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}"/keyring/ssh
