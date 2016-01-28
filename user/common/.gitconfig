@@ -11,7 +11,8 @@
     rc = rebase --continue
     edit = !vim
     pe = format-patch -M -C --find-copies-harder --stdout
-    pr = pull --rebase --stat
+    pr = pull --rebase --prune --stat
+    repomv = log --pretty=email --patch-with-stat --reverse --
 [color]
     ui = auto
 [diff]
