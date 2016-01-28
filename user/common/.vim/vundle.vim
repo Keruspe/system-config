@@ -3,10 +3,12 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
+Plugin 'ciaranm/securemodelines'
 Plugin 'bling/vim-airline'
 Plugin 'tpope/vim-fugitive'
 Plugin 'vim-scripts/Command-T'
 Plugin 'vim-scripts/gnupg.vim'
+Plugin 'vim-scripts/gtk-vim-syntax'
 Plugin 'rust-lang/rust.vim'
 call vundle#end()
 filetype plugin indent on
