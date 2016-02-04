@@ -8,4 +8,4 @@ user-common-install:
 	@./install user/common ${HOME}
 
 system-install:
-	@./install system /etc
+	@cp -a system/. /etc/

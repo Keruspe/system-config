@@ -1,20 +1,9 @@
 #!/bin/bash
 
-install_cmd() {
-    case $1 in
-        "system")
-            echo "cp -a"
-            ;;
-        *)
-            echo "ln -snTf"
-            ;;
-    esac
-}
-
 for i in "${1}"/* "${1}"/.*; do
 	bn="$(basename "${i}")"
 	[[ "${bn}" == "." || "${bn}" == ".." || "${bn}" == "*" ]] && continue
 	dest="${2}/${bn}"
 	mkdir -p "$(dirname "${dest}")"
-	$(install_cmd "${1}") "$(pwd)/${i}" "${dest}"
+	ls -snTf "$(pwd)/${i}" "${dest}"
 done
