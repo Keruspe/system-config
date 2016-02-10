@@ -5,5 +5,5 @@ for i in "${1}"/* "${1}"/.*; do
 	[[ "${bn}" == "." || "${bn}" == ".." || "${bn}" == "*" ]] && continue
 	dest="${2}/${bn}"
 	mkdir -p "$(dirname "${dest}")"
-	ls -snTf "$(pwd)/${i}" "${dest}"
+	ln -snTf "$(pwd)/${i}" "${dest}"
 done
