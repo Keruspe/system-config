@@ -1,3 +1,7 @@
-/dev/sda5        /                      ext4        defaults,data=writeback,noatime,nodiratime  0 1
-paludis          /var/tmp/paludis       tmpfs       defaults             0 0
-tmpfs            /tmp                   tmpfs       defaults             0 0
+/dev/mapper/btrpool /                btrfs defaults,noatime,discard,ssd,compress=zlib,subvol=/exherbo 0 1
+/dev/mapper/btrpool /home            btrfs defaults,noatime,discard,ssd,compress=zlib,subvol=/home    0 1
+/dev/mapper/btrpool /root            btrfs defaults,noatime,discard,ssd,compress=zlib,subvol=/root    0 1
+/dev/mapper/btrpool /var             btrfs defaults,noatime,discard,ssd,compress=zlib,subvol=/var     0 1
+/dev/mapper/btrpool /home/keruspe    btrfs defaults,noatime,discard,ssd,compress=zlib,subvol=/keruspe 0 1
+paludis             /var/tmp/paludis tmpfs defaults                                                   0 0
+tmpfs               /tmp             tmpfs defaults                                                   0 0
