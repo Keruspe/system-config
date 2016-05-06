@@ -11,6 +11,13 @@ done
 unset sh
 unsetopt nullglob
 
+# Setup GPG env
+export GPG_TTY=$(tty)
+unset SSH_AGENT_PID
+if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
+    export SSH_AUTH_SOCK="${HOME}/.gnupg/S.gpg-agent.ssh"
+fi
+
 # Basic settings
 HISTFILE=~/.histfile
 HISTSIZE=8192
