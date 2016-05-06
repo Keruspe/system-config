@@ -16,7 +16,6 @@ set termencoding=utf-8
 set tw=120
 set viminfo='1000,f1,:1000,/1000
 set title
-set mouse=a
 
 let g:full_name = 'Marc-Antoine Perennou'
 let g:full_identity = 'Marc-Antoine Perennou <Marc-Antoine@Perennou.com>'
