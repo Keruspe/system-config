@@ -1,6 +1,7 @@
 [user]
     name = Marc-Antoine Perennou
     email = Marc-Antoine@Perennou.com
+    signingkey = 775A60686C2127CD1E1F32A29F8EE9FBFC9F3D4D
 [alias]
     co = commit -sm
     br = checkout -b
