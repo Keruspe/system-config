@@ -22,15 +22,17 @@
 [core]
     excludesfile = /home/keruspe/.gitignore
     editor = vim
-[url "git://git.gnome.org/"]
+[url "git+ssh://git@gitlab.gnome.org/GNOME/"]
     insteadOf = gnome:
+[url "git://git.gnome.org/"]
+    insteadOf = oldgnome:
 [url "git+ssh://marcop@git.gnome.org/git/"]
-    pushInsteadOf = gnome:
+    pushInsteadOf = oldgnome:
 [url "git://git.imagination-land.com/"]
     insteadOf = home:
 [url "git+ssh://git@git.imagination-land.com/"]
     pushInsteadOf = home:
-[url "git+ssh://git@gitlab.clever-cloud.com/clever-cloud/"]
+[url "git+ssh://git@gitlab.corp.clever-cloud.com/clever-cloud/"]
     insteadOf = clever:
 [url "git://github.com/"]
     insteadOf = github:

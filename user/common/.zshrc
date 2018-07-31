@@ -15,7 +15,12 @@ unsetopt nullglob
 export GPG_TTY=$(tty)
 unset SSH_AGENT_PID
 if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
-    export SSH_AUTH_SOCK="${HOME}/.gnupg/S.gpg-agent.ssh"
+    export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/gnupg/S.gpg-agent.ssh"
+fi
+
+# Ensure ibus is running
+if [[ "${EUID}" != "0" ]]; then
+    gdbus introspect -e -d org.freedesktop.IBus -o /org/freedesktop/IBus &>/dev/null
 fi
 
 # Basic settings
@@ -24,7 +29,7 @@ HISTSIZE=8192
 SAVEHIST=8192
 export EDITOR=/usr/bin/vim
 export PAGER=/usr/bin/less
-export PATH=~/bin:/usr/local/bin:/usr/host/bin:${PATH}
+export PATH=~/bin:~/.local/bin:${PATH}
 umask 022
 
 # Completions
@@ -69,7 +74,7 @@ zstyle ':vcs_info:*' formats '%F{5}(%f%s%F{5})%F{3}-%F{5}[%F{2}%b%F{5}]%f '
 zstyle ':vcs_info:(sv[nk]|bzr):*' branchformat '%b%F{1}:%F{3}%r'
 zstyle ':vcs_info:*' enable git hg bzr svn
 
-## Reload vcs_info stuff on precmd
+## Reload vcs_info stuff on precmd and ensure gpg is running
 precmd(){
     vcs_info
     [[ $(tty) = /dev/pts/* ]] && print -Pn "\e]0;%n@%M:%~\a"
@@ -79,7 +84,6 @@ precmd(){
 alias ls='ls --color=auto'
 alias lo='ls -ogh'
 alias ll='ls -lh'
-alias ssh='autossh -M 0'
 alias grep='grep --colour=auto'
 sudo() {
     su - -c "$@"

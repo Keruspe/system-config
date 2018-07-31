@@ -23,3 +23,7 @@ let g:exheres_author_name = 'Marc-Antoine Perennou <keruspe@exherbo.org>'
 let g:netrw_http_cmd = "curl -o"
 
 syntax on
+
+function! s:get_lsp_server_cmd_for_rust()
+    return ['rls']
+endfunction
