@@ -1,1 +1,1 @@
-btrpool /dev/nvme0n1p2 none luks,size=512,hash=sha512,cipher=aes-xts-plain64,discard
+root UUID=fa350402-5b67-47b5-87e7-cd72bfe4fc09 none luks,size=512,hash=sha512,cipher=aes-xts-plain64,discard
