@@ -30,4 +30,15 @@ endfunction
 
 " vim-airline
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#languageclient#enabled = 1
 set laststatus=2
+
+" languageclient
+let g:LanguageClient_serverCommands = {
+    \ 'rust': ['ra_lsp_server'],
+    \ }
+nnoremap <F5> :call LanguageClient_contextMenu()<CR>
+
+" mu-complete
+set completeopt+=menuone
+let g:mucomplete#enable_auto_at_startup = 1
