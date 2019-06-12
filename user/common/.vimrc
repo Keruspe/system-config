@@ -27,3 +27,7 @@ syntax on
 function! s:get_lsp_server_cmd_for_rust()
     return ['rls']
 endfunction
+
+" vim-airline
+let g:airline#extensions#tabline#enabled = 1
+set laststatus=2
