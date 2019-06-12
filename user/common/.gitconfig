@@ -69,3 +69,5 @@
     fsckobjects = true
 [receive]
     fsckObjects = true
+[log]
+	mailmap = true
