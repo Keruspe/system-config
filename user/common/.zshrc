@@ -32,6 +32,40 @@ export PAGER=/usr/bin/less
 export PATH=~/bin:~/.local/bin:${PATH}
 umask 022
 
+# MPRIS handling
+
+find_bluetooth_device() {
+    local device="${1}"
+
+    bluetoothctl devices | grep " ${device}$" | head -n 1 | cut -d ' ' -f 2
+}
+
+connect_bluetooth_device() {
+    local device="${1}"
+    local device_mac
+
+    device_mac="$(find_bluetooth_device "${device}")"
+
+    bluetoothctl connect "${device_mac}"
+}
+
+control_mpris() {
+    local action="${1}"
+
+    systemctl --user "${action}" "mpris-proxy.service"
+}
+
+start_mpris() {
+    local device="${1}"
+
+    connect_bluetooth_device "${device}"
+    control_mpris "start"
+}
+
+stop_mpris() {
+    control_mpris "stop"
+}
+
 # Completions
 
 ## format all messages not formatted in bold prefixed with ----
@@ -100,12 +134,14 @@ init_node() {
         . ~/.nvm/nvm.sh
         last="$(nvm_remote_versions | grep -v iojs | tail -1)"
         nvm install "${last}" &>/dev/null
-        command clever &>/dev/null || npm install -g clever-tools
     fi
 }
-clever() {
-    init_node
-    command clever "${@}"
+foralldirs() {
+    for d in */; do
+        cd "${d}"
+        "${@}"
+        cd ..
+    done
 }
 
 # No beep ever
