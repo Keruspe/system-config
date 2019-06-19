@@ -24,10 +24,6 @@ let g:netrw_http_cmd = "curl -o"
 
 syntax on
 
-function! s:get_lsp_server_cmd_for_rust()
-    return ['rls']
-endfunction
-
 " vim-airline
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#languageclient#enabled = 1
@@ -42,3 +38,9 @@ nnoremap <F5> :call LanguageClient_contextMenu()<CR>
 " mu-complete
 set completeopt+=menuone
 let g:mucomplete#enable_auto_at_startup = 1
+let g:mucomplete#completion_delay = 1
+let g:mucomplete#can_complete = {
+  \ 'default': {
+  \    'omni': { t -> strlen(&l:omnifunc) > 0 && t =~# '\%(\k\|\.\|\:\)$' }
+  \    }
+  \  }
