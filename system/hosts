@@ -10,6 +10,7 @@
 # IPv4 and IPv6 localhost aliases
 127.0.0.1	Lou.local Lou localhost
 ::1		Lou.local Lou localhost
+127.0.0.1 lolcatho.st test.local
 
 #
 # Imaginary network.
