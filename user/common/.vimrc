@@ -31,6 +31,7 @@ set laststatus=2
 
 " languageclient
 let g:LanguageClient_serverCommands = {
+    \ 'cpp': ['clangd'],
     \ 'rust': ['ra_lsp_server'],
     \ }
 nnoremap <F5> :call LanguageClient_contextMenu()<CR>
