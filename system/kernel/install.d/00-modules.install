@@ -7,8 +7,19 @@
 case "$1" in
     add)
         make -C /usr/src/linux modules_install
+        chown -R torvalds:torvalds /usr/src/wireguard
+        su - torvalds -c "make -C /usr/src/wireguard clean"
         su - torvalds -c "make -C /usr/src/wireguard module"
-        exec make -C /usr/src/wireguard module-install
+        make -C /usr/src/wireguard module-install
+        nvidia_drivers_version="$(cave print-ids -m 'x11-drivers/nvidia-drivers::/' -f '%v' | cut -d '-' -f 1)"
+        nvidia_drivers="/usr/src/nvidia-drivers-${nvidia_drivers_version}"
+        if [[ -d "${nvidia_drivers}" ]]; then
+            export IGNORE_CC_MISMATCH=1
+            chown -R torvalds:torvalds "${nvidia_drivers}"
+            su - torvalds -c "make -C ${nvidia_drivers} clean"
+            su - torvalds -c "make -C ${nvidia_drivers} modules"
+            KERNELRELEASE= make -C "${nvidia_drivers}" modules_install || true
+        fi
         ;;
     *)
         exit 0
